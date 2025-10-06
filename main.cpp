@@ -43,9 +43,10 @@ class Movie {
   // arguments: ReviewNode* head
   // returns: nothing
   void displayReview() {
+    cout << "Movie: " << title << endl;
     // First checks if the list is empty
     if (head == nullptr) {
-      cout << "Empty. \n";
+      cout << "No reviews. \n\n";
       return;
     }
 
@@ -55,12 +56,11 @@ class Movie {
     cout << "Outputting all reviews:\n";
 
     ReviewNode* current = head;
-
     while (current != nullptr) {
       count++;
       cout << "   >Review #" << count << ": " << current->rating << ": "
            << current->comment << "\n";
-      total = total + current->rating;
+      total += current->rating;
       current = current->next;
     }
     if (count > 0) {
