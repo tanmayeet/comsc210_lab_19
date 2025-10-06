@@ -42,7 +42,7 @@ class Movie {
   // displayReview outputs the review
   // arguments: ReviewNode* head
   // returns: nothing
-  void displayReview(ReviewNode* head) {
+  void displayReview() {
     // First checks if the list is empty
     if (head == nullptr) {
       cout << "Empty. \n";
@@ -70,6 +70,56 @@ class Movie {
       cout << "No reviews to average.\n";
     }
   }
+
+  void clear() {
+    ReviewNode* current = head;
+    while (current != nullptr) {
+      ReviewNode* temp = current;
+      current = current->next;
+      delete temp;
+    }
+    head = nullptr;
+  }
 };
 
-int main() { return 0; }
+float generateRandomRating() {
+  int r = rand() % 41 + 10;  // 10 to 50
+  return r / 10.0;
+}
+
+int main() {
+  srand(time(0));
+
+  vector<Movie> movies;
+  movies.push_back(Movie("Inception"));
+  movies.push_back(Movie("The Matrix"));
+  movies.push_back(Movie("Interstellar"));
+  movies.push_back(Movie("The Grand Budapest Hotel"));
+
+  ifstream infile("reviews.txt");
+  if (!infile) {
+    cout << "Error: Could not open reviews.txt\n";
+    return 1;
+  }
+
+  string comment;
+  int index = 0;
+
+  while (getline(infile, comment)) {
+    float rating = generateRandomRating();
+    movies[index].addReview(rating, comment);
+    index = (index + 1) % movies.size();
+  }
+
+  infile.close();
+
+  for (int i = 0; i < movies.size(); i++) {
+    movies[i].displayReview();
+  }
+
+  for (int i = 0; i < movies.size(); i++) {
+    movies[i].clear();
+  }
+
+  return 0;
+}
