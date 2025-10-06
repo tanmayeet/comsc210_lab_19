@@ -17,7 +17,10 @@ struct ReviewNode {
   ReviewNode* next;
 };
 
-class Movie {
+// Function prototypes
+float generateRandomRating()
+
+    class Movie {
  private:
   string title;
   ReviewNode* head;
