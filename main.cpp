@@ -102,6 +102,7 @@ int main() {
   movies.push_back(Movie("Interstellar"));
   movies.push_back(Movie("The Grand Budapest Hotel"));
 
+  // Read comments from file and assign to movies
   ifstream infile("reviews.txt");
   if (!infile) {
     cout << "Error: Could not open reviews.txt\n";
