@@ -63,12 +63,8 @@ class Movie {
       total += current->rating;
       current = current->next;
     }
-    if (count > 0) {
-      float average = total / count;
-      cout << "Average rating: " << average << "\n";
-    } else {
-      cout << "No reviews to average.\n";
-    }
+    float average = total / count;
+    cout << "Average rating: " << average << "\n";
   }
 
   void clear() {
@@ -106,6 +102,7 @@ int main() {
   int index = 0;
 
   while (getline(infile, comment)) {
+    cout << "Adding review to movie #" << index << ": " << comment << endl;
     float rating = generateRandomRating();
     movies[index].addReview(rating, comment);
     index = (index + 1) % movies.size();
