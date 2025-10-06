@@ -102,6 +102,8 @@ int main() {
   int index = 0;
 
   while (getline(infile, comment)) {
+    if (comment.empty()) continue;  // skip blank lines
+
     cout << "Adding review to movie #" << index << ": " << comment << endl;
     float rating = generateRandomRating();
     movies[index].addReview(rating, comment);
