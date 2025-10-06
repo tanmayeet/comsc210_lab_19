@@ -22,15 +22,16 @@ class Movie {
   string title;
   ReviewNode* head;
 
+  // Constructor: initializes movie title and empty review list
  public:
   Movie(string t) {
     title = t;
     head = nullptr;
   }
 
-  // addReview
+  // addReview adds a review to the head of the linked list
   // arguments: float rating, string comment
-  // returns: nothing
+  // returns: none
   void addReview(float rating, string comment) {
     ReviewNode* newNode = new ReviewNode;
     newNode->rating = rating;
@@ -40,8 +41,8 @@ class Movie {
   }
 
   // displayReview outputs the review
-  // arguments: ReviewNode* head
-  // returns: nothing
+  // arguments: none
+  // returns: none
   void displayReview() {
     cout << "Movie: " << title << endl;
     // First checks if the list is empty
@@ -67,6 +68,9 @@ class Movie {
     cout << "Average rating: " << average << "\n";
   }
 
+  // deletes all review nodes to free memory
+  // arguments: none
+  // returns: nothing
   void clear() {
     ReviewNode* current = head;
     while (current != nullptr) {
@@ -78,6 +82,9 @@ class Movie {
   }
 };
 
+// generates a random float rating
+// arguments: none
+// returns: a float rating
 float generateRandomRating() {
   int r = rand() % 41 + 10;  // 10 to 50
   return r / 10.0;
@@ -112,10 +119,12 @@ int main() {
 
   infile.close();
 
+  // Displays reviews for each movie
   for (int i = 0; i < movies.size(); i++) {
     movies[i].displayReview();
   }
 
+  // Cleans up memory
   for (int i = 0; i < movies.size(); i++) {
     movies[i].clear();
   }
